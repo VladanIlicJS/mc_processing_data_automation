@@ -5,12 +5,12 @@ function extractData_(fileContent,fileName) {
   }
   const sheetLogs= new Sheet('Logs')
   
-  const [bankName,date]=splitFileName(fileName)
+  const [bankName,date]=splitFileName_(fileName)
 
-  const EXPECTED_HEADER=returnRightBankHeader(bankName)
+  const EXPECTED_HEADER=returnRightBankHeader_(bankName)
   
   const headerFromFile = fileContent[0];
-  const [headerComparationArray,errors] = compareHeaders(EXPECTED_HEADER,headerFromFile)
+  const [headerComparationArray,errors] = compareHeaders_(EXPECTED_HEADER,headerFromFile)
   
   let newfileContent=[]
 
@@ -29,25 +29,25 @@ function extractData_(fileContent,fileName) {
   }
 
   
-  createAndAddBankNameAndDateColumns(newfileContent,date,bankName)
-  removeCurrencySymbol(newfileContent)
+  createAndAddBankNameAndDateColumns_(newfileContent,date,bankName)
+  removeCurrencySymbol_(newfileContent)
 
   sheetLogs.logFileInfo(fileName)
   return newfileContent[0].map((_,index)=>newfileContent.map(row=>row[index]))
 }
 
 
-function splitFileName(fileName){
+function splitFileName_(fileName){
     return [fileName.split(' ')[0],fileName.split(' ')[1].split('.')[0]]
 }
 
-function createAndAddBankNameAndDateColumns(newfileContent,date,bankName){
+function createAndAddBankNameAndDateColumns_(newfileContent,date,bankName){
   const numberOfColumns=newfileContent[0].length;
   newfileContent.unshift(new Array(newfileContent[0].length).fill(bankName))
   newfileContent.unshift(new Array(newfileContent[0].length).fill(date))
 }
 
-function removeCurrencySymbol(newfileContent){
+function removeCurrencySymbol_(newfileContent){
   newfileContent[newfileContent.length-1].map((amount,i)=>{
     if(amount.includes('$')){
       newfileContent[newfileContent.length-1][i]=amount.split('$')[1]
@@ -56,7 +56,7 @@ function removeCurrencySymbol(newfileContent){
     }
   })
 }
-function isChecked(newFileContent){
+function isChecked_(newFileContent){
   let newTableData=[]
   newFileContent.forEach((row,i)=>{
       if(row.includes('checked')){

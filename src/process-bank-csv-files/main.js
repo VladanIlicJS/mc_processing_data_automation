@@ -9,7 +9,7 @@ function processBankCsvFiles() {
 
   sheetLogs.firstRowAppend(fileCount)
 
-  const [data,processCount,rejectedCount]=processedDataAndResults(folder,subfolders)
+  const [data,processCount,rejectedCount]=processedDataAndResults_(folder,subfolders)
 
   sheetChecks.writeData(data)
   

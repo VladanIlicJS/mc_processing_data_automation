@@ -3,7 +3,6 @@ class Sheet {
     this.sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(name)
   }
   writeData(fileContent) {
-    console.log(fileContent)
     this.sheet.getRange(this.sheet.getLastRow() + 1, 1, fileContent.length, fileContent[0].length).setValues(fileContent)
   }
   firstRowAppend(fileCount) {

@@ -1,4 +1,4 @@
-function processedDataAndResults(folder,subfolders){
+function processedDataAndResults_(folder,subfolders){
   const fileIter = folder.folder.getFiles()
   let processCount=0
   let rejectedCount=0
@@ -13,7 +13,7 @@ function processedDataAndResults(folder,subfolders){
     if (newFileContent) {
       newFileContent.shift()
 
-      newFileContent = isChecked(newFileContent)
+      newFileContent = isChecked_(newFileContent)
 
       if (newFileContent.length > 0) {
         newFileContent.map(row=>fullDataPrepareForWriting.push(row))
@@ -36,7 +36,7 @@ function processedDataAndResults(folder,subfolders){
 
 
 
-function compareHeaders(EXPECTED_HEADER,headerFromFile){
+function compareHeaders_(EXPECTED_HEADER,headerFromFile){
   let errors=[]
   let array=[]
   array= EXPECTED_HEADER.map(header=>{
@@ -50,7 +50,7 @@ function compareHeaders(EXPECTED_HEADER,headerFromFile){
   return [array,errors]
 }
   
-function returnRightBankHeader(bankName){
+function returnRightBankHeader_(bankName){
   if(bankName=='Intesa'){
     return INTESA_HEADER
   }
